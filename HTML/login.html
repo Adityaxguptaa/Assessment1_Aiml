@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        
+        body {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #fff;
+            animation: fadeIn 1.5s ease;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideIn 1s ease-out;
+        }
+
+        form span {
+            font-size: 1.2em;
+        }
+
+    
+        input[type="text"], input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #8f94fb;
+            transition: transform 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            transform: scale(1.05);
+            border: 1px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        
+        button {
+            width: 40%;
+            padding: 10px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            background-color: #8f94fb;
+            border: none;
+            color: #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #4e54c8;
+            transform: scale(1.1);
+        }
+
+    
+        button a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+    </style>
+    <center>
+        <br>
+        <h1><u>Login</u></h1>
+        <hr>
+        <br><br>
+        <form action="">
+            <span>User id : </span><input type="text" id="user" placeholder="Enter Your User id" >
+            <br><br>
+            <span>Password : </span><input type="password" id="password" placeholder="Enter Your Password" >
+            <br><br>
+            <button type="submit"><a href="welcome.html">Submit</a></button>
+            <button type="reset">Reset</button>
+        </form>
+    </center>
+    <script></script>
+</body>
+</html>

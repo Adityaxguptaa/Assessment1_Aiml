@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb74d, #ff6f00);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            animation: backgroundAnimation 2s infinite alternate;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 1s ease;
+        }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        input[type="text"] {
+            width: calc(50% - 12px);
+            padding: 12px;
+            margin: 12px 6px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #ff6f00;
+            box-shadow: 0 0 8px rgba(255, 111, 0, 0.4);
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(135deg, #ff824d, #0000ff); }
+            100% { background: linear-gradient(135deg, #00bbff, #ffb74d); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Currency Converter</h1>
+        <input type="text" id="from" placeholder="From Currency (e.g., USD)">
+        <input type="text" id="amt" placeholder="Amount">
+        <br>
+        <input type="text" id="to" placeholder="To Currency (e.g., INR)">
+        <input type="text" id="conamt" placeholder="Converted Amount" readonly>
+        <br>
+        <button>Convert</button>
+    </div>
+ 
+    <script>
+        let rate = 1;
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', function() {
+            let fromCurr = document.querySelector('#from').value;
+            let toCurr = document.querySelector('#to').value;
+            let url = `https://api.exchangerate-api.com/v4/latest/${fromCurr}`;
+            fetch(url)
+            .then((response) => {
+                return response.json();
+            })
+            .then(data => {
+                rate = data.rates[toCurr.toUpperCase()];
+                let amt = parseFloat(document.querySelector('#amt').value);
+                let convertedAmt = amt * rate;
+                let conamt = document.querySelector('#conamt');
+                conamt.value = convertedAmt.toFixed(2);
+            })
+        });
+    </script>
+</body>
+</html>
